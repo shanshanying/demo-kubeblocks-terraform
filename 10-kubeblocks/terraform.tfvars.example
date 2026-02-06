@@ -1,0 +1,52 @@
+# Example Configuration: KubeBlocks Platform Layer
+#
+# Two deployment modes are supported:
+# 1. Remote Helm Repository (recommended for production)
+# 2. Local Chart Path (for development)
+
+# =============================================================================
+# Option 1: Remote Helm Repository (Production)
+# =============================================================================
+
+# KubeBlocks repository
+kubeblocks_repository     = "https://apecloud.github.io/helm-charts"
+kubeblocks_chart_version  = "1.0.1"
+
+# Addons repository
+addons_repository = "https://apecloud.github.io/helm-charts"
+
+# =============================================================================
+# Option 2: Local Chart Path (Development)
+# =============================================================================
+
+# Leave *_repository empty to use local paths
+# kubeblocks_repository = ""
+# kubeblocks_chart_path = "../../kubeblocks"
+# addons_repository     = ""
+# addons_path           = "../../addons"
+
+# =============================================================================
+# Common Configuration
+# =============================================================================
+
+kubeblocks_namespace   = "kb-system"
+kubeblocks_values_file = "../../kb-values.yaml"
+image_registry         = "docker.io"
+
+# Addons to install (works with both modes)
+# When using remote repository, chart names are used directly
+# When using local paths, charts are loaded from addons_path
+addons = [
+  {
+    name          = "mysql"
+    enabled       = true
+    chart_version = "1.0.1"  # Optional: pin addon version
+    keep_resource = true
+    values = {
+      image = {
+        registry   = "docker.io"
+        repository = "apecloud/mysql"
+      }
+    }
+  }
+]

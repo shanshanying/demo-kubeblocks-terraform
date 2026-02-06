@@ -1,0 +1,57 @@
+# Example Configuration: Database Clusters Layer
+#
+# Two deployment modes are supported:
+# 1. Remote Helm Repository (recommended for production)
+# 2. Local Chart Path (for development)
+
+# =============================================================================
+# Option 1: Remote Helm Repository (Production)
+# =============================================================================
+
+clusters_repository = "https://apecloud.github.io/helm-charts"
+
+# =============================================================================
+# Option 2: Local Chart Path (Development)
+# =============================================================================
+
+# Leave clusters_repository empty to use local paths
+# clusters_repository = ""
+# addons_cluster_path = "../../addons-cluster"
+
+# =============================================================================
+# Cluster Definitions
+# =============================================================================
+
+clusters = {
+  # Development MySQL (single instance)
+  mysql-dev = {
+    name               = "mysql-dev"
+    engine             = "mysql"
+    namespace          = "dev"
+    version            = "8.0.39"
+    replicas           = 1
+    cpu                = 0.5
+    memory             = 0.5
+    storage            = 10
+    chart_version      = "1.0.1"  # Optional: pin cluster chart version
+    topology           = ""
+    termination_policy = "Delete"
+    enabled            = true
+  }
+
+  # Production MySQL (HA with semisync)
+  mysql-prod = {
+    name               = "mysql-prod"
+    engine             = "mysql"
+    namespace          = "prod"
+    version            = "8.0.39"
+    replicas           = 3
+    cpu                = 2
+    memory             = 4
+    storage            = 100
+    chart_version      = "1.0.1"
+    topology           = "semisync"
+    termination_policy = "WipeOut"
+    enabled            = true
+  }
+}
