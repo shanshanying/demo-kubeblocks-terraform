@@ -67,9 +67,7 @@ terraform/
 ├── 00-crds/              # CRD bootstrap
 ├── 10-kubeblocks/        # Platform + addons
 ├── 20-clusters/          # Database clusters
-├── deprecated/           # Old monolithic files
 ├── .gitignore            # Terraform ignore patterns
-├── MIGRATION.md          # Migration guide
 └── README.md             # This file
 ```
 

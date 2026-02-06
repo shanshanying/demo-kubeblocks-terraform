@@ -27,3 +27,4 @@ override.tf.json
 # OS
 .DS_Store
 Thumbs.db
+AGENTS.md
