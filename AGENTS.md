@@ -151,7 +151,6 @@ terraform destroy  # Has prevent_destroy lifecycle - may require state manipulat
 
 **Safety Features**:
 - `prevent_destroy` lifecycle prevents accidental CRD deletion
-- Server-side apply avoids field ownership conflicts
 - Verification step checks key CRDs are established
 
 ### Layer 10: KubeBlocks Platform
@@ -306,7 +305,7 @@ terraform output kubectl_commands
    - `Halt` - Stops cluster but keeps all resources
    - `DoNotTerminate` - Prevents any deletion
 
-5. **Data Protection**: 
+5. **Data Protection**:
    - Custom encryption keys recommended for backups
    - Backup repositories can be configured with object storage
 

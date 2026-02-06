@@ -25,5 +25,4 @@ terraform apply -var="crd_force_update=true"
 ## Safety
 
 - `prevent_destroy` lifecycle prevents accidental deletion
-- Server-side apply avoids field ownership conflicts
 - Verification step ensures key CRDs are established

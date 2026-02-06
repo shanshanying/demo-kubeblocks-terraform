@@ -76,6 +76,5 @@ terraform/
 ## Safety Features
 
 - **CRD Protection**: `prevent_destroy` lifecycle prevents accidental CRD deletion
-- **Server-side Apply**: Avoids field ownership conflicts
 - **Layer Independence**: Destroying clusters won't affect platform or CRDs
 - **Version Pinning**: Support for chart version constraints

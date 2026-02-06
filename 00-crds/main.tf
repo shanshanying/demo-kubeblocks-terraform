@@ -16,7 +16,6 @@ terraform {
 }
 
 # CRD Application
-# Uses kubectl apply with server-side apply for better handling of large CRDs.
 # The trigger ensures CRDs are only re-applied when the file actually changes
 # or when explicitly forced.
 resource "null_resource" "crds" {
@@ -28,7 +27,7 @@ resource "null_resource" "crds" {
   provisioner "local-exec" {
     command = <<-EOT
       echo "Applying KubeBlocks CRDs from ${var.crds_file_path}..."
-      kubectl create --server-side=true --field-manager=terraform -f ${var.crds_file_path} || kubectl replace --server-side=true --field-manager=terraform -f ${var.crds_file_path}
+      kubectl create -f ${var.crds_file_path} || kubectl replace -f ${var.crds_file_path}
       echo "Waiting for CRDs to be established..."
       kubectl wait --for condition=established --timeout=120s -f ${var.crds_file_path} 2>/dev/null || true
       echo "CRDs applied successfully."
